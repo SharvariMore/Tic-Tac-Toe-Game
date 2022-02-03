@@ -65,7 +65,8 @@
     margin-top: 1em;
 }
 
-.controls button {
+#reset {
+    background-color: #FF3860;
     color: white;
     padding: 8px;
     border-radius: 8px;
@@ -73,12 +74,4 @@
     font-size: 20px;
     margin-left: 1em;
     cursor: pointer;
-}
-
-.restart {
-    background-color: #498AFB;
-}
-
-#reset {
-    background-color: #FF3860;
 }
