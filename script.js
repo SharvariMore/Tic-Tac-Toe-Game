@@ -31,6 +31,14 @@ window.addEventListener('DOMContentLoaded', () => {
         [2, 4, 6]
     ];
 
+    //change current player in board if X->O or O->X
+    const changePlayer = () => {
+        playerDisplay.classList.remove(`player${currentPlayer}`);
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        playerDisplay.innerText = currentPlayer;
+        playerDisplay.classList.add(`player${currentPlayer}`);
+    }
+
     //check what happens when user clicks on tile
     const userAction = (tile, index) => {
         if(isValidAction(tile) && isGameActive) {
