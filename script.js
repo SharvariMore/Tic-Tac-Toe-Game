@@ -31,6 +31,48 @@ window.addEventListener('DOMContentLoaded', () => {
         [2, 4, 6]
     ];
 
+    //check if winner is there or not
+    function handleResultValidation() {
+        let roundWon = false;
+        for (let i = 0; i <= 7; i++) {
+            const winCondition = winningConditions[i];
+            const a = board[winCondition[0]];
+            const b = board[winCondition[1]];
+            const c = board[winCondition[2]];
+            if (a === '' || b === '' || c === '') {
+                continue;
+            }
+            if (a === b && b === c) {
+                roundWon = true;
+                break;
+            }
+        }
+
+        if (roundWon) {
+           announce(currentPlayer === 'X' ? PLAYERX_WON : PLAYERO_WON);
+           isGameActive = false;
+           return; 
+        }
+
+        if (!board.includes('')) 
+            announce(TIE);
+    }
+
+    //helper function to announce winner or end game state
+    const announce = (type) => {
+        switch (type) {
+            case PLAYERO_WON:
+                announcer.innerHTML = 'Player <span class="playerO"> O </span> Won';
+                break;
+            case PLAYERX_WON:
+                announcer.innerHTML = 'Player <span class="playerX"> X </span> Won';
+                break;
+            case TIE:
+                announcer.innerText = 'Tie';
+        }
+        announcer.classList.remove('hide');       //display winner to user
+    };
+
     //change current player in board if X->O or O->X
     const changePlayer = () => {
         playerDisplay.classList.remove(`player${currentPlayer}`);
